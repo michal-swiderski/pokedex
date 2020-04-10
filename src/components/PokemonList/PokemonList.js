@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './PokemonList.scss';
 
 import {fetchPokemonList} from "../../services/pokemonService";
-import PokemonCard from "../PokemonGridElement/PokemonCard";
+import PokemonCard from "../PokemonCard/PokemonCard";
 
 const PokemonList = () => {
 
