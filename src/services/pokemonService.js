@@ -4,30 +4,34 @@ const POKEAPI_URL = 'https://pokeapi.co/api/v2';
 const POKEMON_ENDPOINT = '/pokemon';
 const POKEMON_SPECIES_ENDPOINT = '/pokemon-species';
 
-const pokemons = new Map();
-const pokemonSpecies = new Map();
 
-export async function fetchPokemon(id = 1) {
-    try {
-        if (pokemons.has(id)) {
-            return pokemons.get(id);
-        }
-        const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}/${id}`);
-        pokemons.set(data.id, data);
-        return data;
-    } catch (error) {
-        throw error;
-    }
-}
+const pokemons = [];
 
-export async function getPokemonSpecies(id = 1) {
+
+export async function fetchPokemonList(limit = 20, offset = 0) {
     try {
-        if (pokemonSpecies.has(id)) {
-            return pokemonSpecies.get(id);
-        }
-        const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_SPECIES_ENDPOINT}/${id}`);
-        pokemonSpecies.set(data.id, data);
-        return data;
+        const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}?limit=${limit}&offset=${offset}`);
+
+        const result = [];
+        const requests = [];
+        data.results.forEach(entry => {
+            //if a pokemon already exists in our array, don't fetch it again;
+            const pokemon = pokemons.find(p => p.name === entry.name);
+            if (pokemon) {
+                pokemons.push(pokemon);
+                result.push(pokemon);
+                return;
+            }
+            const req = axios.get(entry.url).then(({data}) => {
+                result.push(data);
+                pokemons.push(data);
+            });
+            requests.push(req);
+        });
+
+        await Promise.all(requests);
+        result.sort((a, b) => a.id - b.id);
+        return result;
     } catch (error) {
         throw error;
     }
