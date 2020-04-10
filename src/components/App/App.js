@@ -11,7 +11,7 @@ function App() {
             <div className="App">
                 <Header/>
                 <Switch>
-                    <Route path="/">
+                    <Route path="/:page?">
                         <div className="container">
                             <PokemonList/>
                         </div>

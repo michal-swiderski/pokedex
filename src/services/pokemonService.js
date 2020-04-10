@@ -7,6 +7,14 @@ const POKEMON_SPECIES_ENDPOINT = '/pokemon-species';
 
 const pokemons = [];
 
+export async function getPokemonCount() {
+    try {
+        const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}`);
+        return data.count;
+    } catch (error) {
+
+    }
+}
 
 export async function fetchPokemonList(limit = 20, offset = 0) {
     try {
