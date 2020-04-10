@@ -16,7 +16,7 @@ const PokemonCard = (props) => {
             </h2>
             <div className="pokemon-card__types">
                 {
-                    props.pokemon.types.map(type => <PokemonType type={type.type.name}/>)
+                    props.pokemon.types.map(type => <PokemonType type={type.type.name} key={type.type.name}/>)
                 }
             </div>
         </div>
