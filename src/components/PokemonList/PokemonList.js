@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './PokemonList.scss';
 import {useParams, useHistory} from 'react-router-dom';
 
-import {fetchPokemonList, getPokemonCount} from "../../services/pokemonService";
+import {fetchPokemons, getPokemonCount} from "../../services/pokemonService";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Pagination from "../Pagination/Pagination";
 
@@ -15,7 +15,7 @@ const PokemonList = () => {
 
     useEffect(() => {
         try {
-            fetchPokemonList(20, (page - 1) * 20).then(data => setPokemons(data))
+            fetchPokemons(20, (page - 1) * 20).then(data => setPokemons(data))
         } catch (e) {
             //TODO proper error handling
             console.error(e);

@@ -16,7 +16,7 @@ export async function getPokemonCount() {
     }
 }
 
-export async function fetchPokemonList(limit = 20, offset = 0) {
+export async function fetchPokemons(limit = 20, offset = 0) {
     try {
         const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}?limit=${limit}&offset=${offset}`);
 
