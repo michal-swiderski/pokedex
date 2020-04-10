@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PokemonCard.scss';
+import PokemonType from "../PokemonType/PokemonType";
 
 const PokemonCard = (props) => {
 
@@ -13,6 +14,11 @@ const PokemonCard = (props) => {
             <h2 className="pokemon-card__name">
                 {props.pokemon.name}
             </h2>
+            <div className="pokemon-card__types">
+                {
+                    props.pokemon.types.map(type => <PokemonType type={type.type.name}/>)
+                }
+            </div>
         </div>
     );
 };
