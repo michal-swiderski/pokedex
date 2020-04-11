@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonList.scss';
-import {useHistory, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {getFilteredPokemons} from "../../services/filterService";
 import PokemonCard from "../PokemonCard/PokemonCard";
-import Pagination from "../Pagination/Pagination";
+import PokemonListToolbar from "../PokemonListToolbar/PokemonListToolbar";
 
 const PokemonList = () => {
+
+    const {page} = useParams();
 
     const [pokemons, setPokemons] = useState([]);
     const [totalCount, setTotalCount] = useState([]);
 
-    const {page} = useParams();
-    const history = useHistory();
+    const [nameFilter, setNameFilter] = useState('');
 
     useEffect(() => {
         try {
-            getFilteredPokemons('', [], 20, (page - 1) * 20).then(({totalCount, results}) => {
+            getFilteredPokemons(nameFilter, [], 20, (page - 1) * 20).then(({totalCount, results}) => {
                 setPokemons(results);
                 setTotalCount(totalCount);
             });
@@ -23,14 +24,11 @@ const PokemonList = () => {
             //TODO proper error handling
             console.error(e);
         }
-    }, [page]);
+    }, [page, nameFilter]);
 
     return (
-        <div>
-
-            <Pagination pages={10} page={Number.parseInt(page)} onChange={(page) => {
-                history.push('/' + page)
-            }}/>
+        <>
+            <PokemonListToolbar pageCount={Math.ceil(totalCount / 20)} onName={name => setNameFilter(name)}/>
             <div className="pokemon-list">
                 {pokemons.map(p =>
                     <div className="pokemon-list__pokemon-wrapper" key={p.id}>
@@ -38,7 +36,7 @@ const PokemonList = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </>
     );
 };
 
