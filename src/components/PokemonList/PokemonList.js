@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonList.scss';
 import {useParams} from 'react-router-dom';
+import {debounce} from 'lodash';
 import {getFilteredPokemons} from "../../services/filterService";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import PokemonListToolbar from "../PokemonListToolbar/PokemonListToolbar";
@@ -28,7 +29,9 @@ const PokemonList = () => {
 
     return (
         <>
-            <PokemonListToolbar pageCount={Math.ceil(totalCount / 20)} onName={name => setNameFilter(name)}/>
+            <PokemonListToolbar pageCount={Math.ceil(totalCount / 20)} onName={
+                debounce((name) => setNameFilter(name), 300)
+            }/>
             <div className="pokemon-list">
                 {pokemons.map(p =>
                     <div className="pokemon-list__pokemon-wrapper" key={p.id}>
