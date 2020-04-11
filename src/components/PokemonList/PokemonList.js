@@ -1,21 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonList.scss';
-import {useParams, useHistory} from 'react-router-dom';
-
-import {fetchPokemons, getPokemonCount} from "../../services/pokemonService";
+import {useHistory, useParams} from 'react-router-dom';
+import {getFilteredPokemons} from "../../services/filterService";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Pagination from "../Pagination/Pagination";
 
 const PokemonList = () => {
 
     const [pokemons, setPokemons] = useState([]);
+    const [totalCount, setTotalCount] = useState([]);
 
     const {page} = useParams();
     const history = useHistory();
 
     useEffect(() => {
         try {
-            fetchPokemons(20, (page - 1) * 20).then(data => setPokemons(data))
+            getFilteredPokemons('', [], 20, (page - 1) * 20).then(({totalCount, results}) => {
+                setPokemons(results);
+                setTotalCount(totalCount);
+            });
         } catch (e) {
             //TODO proper error handling
             console.error(e);
