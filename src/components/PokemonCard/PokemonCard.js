@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import './PokemonCard.scss';
 import PokemonType from "../PokemonType/PokemonType";
 
+import questionMark from '../../assets/question_mark.png';
+
 const PokemonCard = (props) => {
+
+    const sprite = props.pokemon.sprites.front_default || questionMark;
 
     return (
         <div className="pokemon-card">
-            <img className="pokemon-card__sprite" src={props.pokemon.sprites.front_default} alt={props.pokemon.name}/>
+            <img className="pokemon-card__sprite" src={sprite} alt={props.pokemon.name}/>
             <span className="pokemon-card__id">
                     #{props.pokemon.id.toString().padStart(3, '0')}
             </span>
