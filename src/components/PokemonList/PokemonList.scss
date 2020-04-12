@@ -1,3 +1,5 @@
+@import '../../common/breakpoints';
+
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
@@ -5,6 +7,23 @@
   &__pokemon-wrapper {
     box-sizing: border-box;
     padding: 1rem;
-    width: 25%
+    width: 25%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+      width: 100%;
+    }
+
+    @media screen and (min-width: $breakpoint-sm) {
+      width: 50%;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+      width: 33.33%;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+      width: 25%;
+    }
+
   }
 }
