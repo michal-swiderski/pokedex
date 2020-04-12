@@ -3,22 +3,21 @@ import PropTypes from 'prop-types';
 import './PokemonListToolbar.scss';
 import PokemonSearch from "../PokemonSearch/PokemonSearch";
 import Pagination from "../Pagination/Pagination";
-import {useHistory, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import TypeFilterDialog from "../TypeFilterDialog/TypeFilterDialog";
+
+const Spacer = () => <div style={{flexGrow: 1}}/>
 
 const PokemonListToolbar = props => {
 
     const {page} = useParams();
-    const history = useHistory();
 
     const [filtersOpen, setFiltersOpen] = useState(false);
 
     return (
         <div className="toolbar">
-            <Pagination count={props.pageCount} page={page} onChange={(page) => {
-                history.push('/' + page)
-            }}/>
-
+            <Pagination count={props.pageCount} page={Number.parseInt(page)}/>
+            <Spacer/>
             <PokemonSearch onChange={name => props.onName(name)}/>
             <button onClick={() => setFiltersOpen(true)}>Filter</button>
             <TypeFilterDialog open={filtersOpen} onClose={() => setFiltersOpen(false)} onFilter={props.onFilter}/>
