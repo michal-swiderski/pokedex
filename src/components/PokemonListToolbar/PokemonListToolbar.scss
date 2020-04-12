@@ -3,4 +3,30 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+
+  .toolbar__filter-button {
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    background: white;
+    padding: 0 2rem;
+    height: 40px;
+    cursor: pointer;
+
+    &--active {
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        background: #3B4CCA;
+        border-radius: 50%;
+        transform: translate(4px, -50%);
+      }
+    }
+
+    &:hover {
+      border: 1px solid #3B4CCA;
+    }
+  }
+
 }
