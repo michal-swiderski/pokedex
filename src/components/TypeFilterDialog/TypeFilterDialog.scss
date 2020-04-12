@@ -1,4 +1,5 @@
 @import '../../common/colours.scss';
+@import '../../common/breakpoints.scss';
 
 @keyframes dialog-zoom-in {
   from {
@@ -22,6 +23,14 @@
   padding: 1rem;
   border-radius: 10px;
   animation: dialog-zoom-in 0.2s;
+
+  @media screen and (min-width: $breakpoint-xs) {
+    width: 90%;
+  }
+
+  @media screen and (min-width: $breakpoint-md) {
+    width: 50%;
+  }
 
   &__type-list {
     list-style: none;
