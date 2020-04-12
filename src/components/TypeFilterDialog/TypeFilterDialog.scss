@@ -1,0 +1,90 @@
+$type-colors: (
+        "water": #6890F0,
+        "poison": #A040A0,
+        "grass": #78C850,
+        "fire": #F08030,
+        "flying": #A890F0,
+        "bug": #A8B820,
+        "normal": #A8A878,
+        "electric" : #E3D030,
+        "ground": #E0C068,
+        "fairy": #EE99AC,
+        "fighting": #C03028,
+        "psychic" : #F85888,
+        "rock": #B8A038,
+        "ghost": #705898,
+        "ice": #98D8D8,
+        "dragon": #7038F8,
+        "steel" : #B8B8D0,
+);
+
+@keyframes dialog-zoom-in {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.filter-dialog {
+  z-index: 10000;
+  position: fixed;
+  background: white;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, .12);
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: 10px;
+  animation: dialog-zoom-in 0.2s;
+
+  &__type-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__type-list-item {
+    font-size: 1rem;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 0.2rem 1rem;
+    margin: 0.2rem;
+    cursor: pointer;
+
+    @each $type, $color in $type-colors {
+      &--#{$type} {
+        color: $color;
+        border-color: $color;
+
+        &:hover {
+          background: $color;
+          color: white;
+        }
+
+        &-active {
+          background: $color;
+          color: white;
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+}
+
+.dialog-overlay {
+  display: block;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: black;
+  opacity: 0.6;
+}
