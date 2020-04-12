@@ -1,3 +1,5 @@
+@import '../../common/colours.scss';
+
 .pagination {
   list-style: none;
   display: flex;
@@ -17,13 +19,13 @@
     border-radius: 50%;
 
     &:hover {
-      background: #3B4CCA;
+      background: $pokemon-primary;
       color: white;
       border-radius: 50%;
     }
 
     &--active {
-      background: #3B4CCA;
+      background: $pokemon-primary;
       color: white;
       border-radius: 50%;
     }

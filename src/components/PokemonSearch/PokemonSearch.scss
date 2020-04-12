@@ -1,3 +1,5 @@
+@import '../../common/colours.scss';
+
 .pokemon-search {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -9,6 +11,6 @@
   transition: border-color 0.2s;
 
   &:focus {
-    border-color: #6890F0;
+    border-color: $pokemon-primary;
   }
 }
