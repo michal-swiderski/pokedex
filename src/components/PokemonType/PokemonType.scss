@@ -2,12 +2,12 @@
 
 .pokemon-type {
   display: inline-block;
-  padding: 0.1rem 0.7rem;
+  padding: 0.2rem 0.7rem;
   margin: 0.2rem 0.3rem;
-  min-width: 70px;
-  font-size: 0.8rem;
+  min-width: 100px;
+  font-size: 1.2rem;
   border: 1px solid gray;
-  border-radius: 10px;
+  border-radius: 20px;
   text-align: center;
 
   @each $type, $color in $type-colors {
