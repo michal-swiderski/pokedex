@@ -23,7 +23,7 @@ const Pagination = props => {
         <ul className="pagination">
             <li
                 className={clsx('pagination__item', {'pagination__item--active': currentPage === 1})}
-                onClick={() => history.push('/1')}
+                onClick={() => history.push('/page/1')}
             >
                 1
             </li>
@@ -31,14 +31,14 @@ const Pagination = props => {
                 range(start, end).map(p =>
                     <li
                         className={clsx('pagination__item', {'pagination__item--active': currentPage === p})}
-                        onClick={() => history.push('/' + p)}
+                        onClick={() => history.push('/page/' + p)}
                     >
                         {p}
                     </li>)
             }
             <li
                 className={clsx('pagination__item', {'pagination__item--active': currentPage === props.count})}
-                onClick={() => history.push('/' + props.count)}
+                onClick={() => history.push('/page/' + props.count)}
             >
                 {props.count}
             </li>

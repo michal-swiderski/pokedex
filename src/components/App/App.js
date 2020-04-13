@@ -12,8 +12,8 @@ function App() {
             <div className="App">
                 <Header/>
                 <Switch>
-                    <Redirect exact from='/' to='/1'/>
-                    <Route exact path="/:page">
+                    <Redirect exact from='/' to='/page/1'/>
+                    <Route exact path="/page/:page">
                         <div className="container">
                             <PokemonList/>
                         </div>
