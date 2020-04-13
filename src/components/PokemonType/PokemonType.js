@@ -5,14 +5,16 @@ import './PokemonType.scss';
 const PokemonType = props => {
 
     return (
-        <div className={"pokemon-type pokemon-type--" + props.type}>
+        <div
+            className={"pokemon-type pokemon-type--" + props.type}>
             {props.type}
         </div>
     );
 };
 
 PokemonType.propTypes = {
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
+    fullWidth: PropTypes.bool
 };
 
 export default PokemonType;
