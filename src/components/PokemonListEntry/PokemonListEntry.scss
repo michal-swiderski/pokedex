@@ -1,0 +1,27 @@
+.pokemon-list-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, .12);
+  border-radius: 10px;
+  padding-left: 2rem;
+
+  &__image-wrapper {
+    //background: lightgray;
+    //border-radius: 10px;
+    //border-bottom-left-radius: 50px;
+    //border-top-left-radius: 50px;
+    //padding-left: 1rem;
+  }
+
+  &__name {
+    display: inline-block;
+    text-transform: capitalize;
+    font-weight: normal;
+    padding-left: 0.3rem;
+  }
+
+  &__id {
+    color: gray;
+  }
+}
