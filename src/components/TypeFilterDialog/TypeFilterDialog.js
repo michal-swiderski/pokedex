@@ -43,9 +43,8 @@ const TypeFilterDialog = props => {
                 <ul className="filter-dialog__type-list">
                     {
                         types.map(t =>
-                            <li>
+                            <li key={t}>
                                 <button
-                                    key={t}
                                     className={
                                         clsx('filter-dialog__type-list-button', {
                                             [`filter-dialog__type-list-button--${t}`]: !activeTypes.includes(t),
