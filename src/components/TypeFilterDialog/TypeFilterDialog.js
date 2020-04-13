@@ -25,6 +25,14 @@ const TypeFilterDialog = props => {
     }
 
     useEffect(() => {
+        if (props.open) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'visible';
+        }
+    }, [props.open]);
+
+    useEffect(() => {
         props.onFilter(activeTypes);
     }, [activeTypes]);
 
