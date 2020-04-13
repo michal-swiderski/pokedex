@@ -10,10 +10,6 @@
   border-radius: 10px;
   text-align: center;
 
-  &:hover {
-    background: lightgray;
-  }
-
   @each $type, $color in $type-colors {
     &--#{$type} {
       color: $color;
