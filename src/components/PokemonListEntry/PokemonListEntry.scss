@@ -5,7 +5,7 @@
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, .12);
   background: white;
   border-radius: 10px;
-  padding-left: 2rem;
+  padding: 0.3rem 1rem;
   cursor: pointer;
 
   &:hover {
@@ -15,6 +15,7 @@
   &__name {
     display: inline-block;
     text-transform: capitalize;
+    font-size: 1rem;
     font-weight: normal;
     padding-left: 0.3rem;
   }
