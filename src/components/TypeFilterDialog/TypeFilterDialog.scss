@@ -39,10 +39,12 @@
     flex-wrap: wrap;
   }
 
-  &__type-list-item {
+  &__type-list-button {
     font-size: 1rem;
+    font-weight: normal;
     border: 1px solid gray;
     border-radius: 20px;
+    background: white;
     padding: 0.2rem 1rem;
     margin: 0.2rem;
     cursor: pointer;
@@ -78,4 +80,5 @@
   width: 100%;
   background: black;
   opacity: 0.6;
+  cursor: pointer;
 }

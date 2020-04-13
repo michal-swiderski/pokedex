@@ -35,17 +35,19 @@ const TypeFilterDialog = props => {
                 <ul className="filter-dialog__type-list">
                     {
                         types.map(t =>
-                            <li
-                                key={t}
-                                className={
-                                    clsx('filter-dialog__type-list-item', {
-                                        [`filter-dialog__type-list-item--${t}`]: !activeTypes.includes(t),
-                                        [`filter-dialog__type-list-item--${t}-active`]: activeTypes.includes(t)
-                                    })
-                                }
-                                onClick={() => handleTypeClick(t)}
-                            >
-                                {t}
+                            <li>
+                                <button
+                                    key={t}
+                                    className={
+                                        clsx('filter-dialog__type-list-button', {
+                                            [`filter-dialog__type-list-button--${t}`]: !activeTypes.includes(t),
+                                            [`filter-dialog__type-list-button--${t}-active`]: activeTypes.includes(t)
+                                        })
+                                    }
+                                    onClick={() => handleTypeClick(t)}
+                                >
+                                    {t}
+                                </button>
                             </li>
                         )
                     }
