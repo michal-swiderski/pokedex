@@ -9,19 +9,20 @@
     padding: 1rem;
     width: 25%;
 
-    @media screen and (min-width: $breakpoint-xs) {
+    @media screen and (max-width: $breakpoint-xs) {
       width: 100%;
+      padding: 0.5rem 0;
     }
 
-    @media screen and (min-width: $breakpoint-sm) {
+    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-sm) {
       width: 50%;
     }
 
-    @media screen and (min-width: $breakpoint-md) {
+    @media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
       width: 33.33%;
     }
 
-    @media screen and (min-width: $breakpoint-lg) {
+    @media screen and (min-width: $breakpoint-md) {
       width: 25%;
     }
 
