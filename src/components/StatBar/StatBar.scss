@@ -1,0 +1,37 @@
+@keyframes ability-bar-load {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.ability-bar {
+  height: 20px;
+  margin: 0 0 1rem 0;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+
+  &__name {
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: lighter;
+    margin-bottom: 0.2rem;
+  }
+
+  &__stat {
+    font-weight: bold;
+  }
+
+  &__bar {
+    border-radius: inherit;
+    height: 100%;
+    background: #3B4CCA;
+    //width: 60%;
+    transition: width 1s;
+    //animation: ability-bar-load 1s ease-in-out;
+  }
+}
