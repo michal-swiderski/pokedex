@@ -25,14 +25,14 @@ export async function fetchPokemonListByType(type) {
     }
 }
 
-export async function fetchPokemonByName(name) {
-    const cachedPokemon = pokemons.find(p => p.name === name)
+export async function fetchPokemonByNameOrId(nameId) {
+    const cachedPokemon = pokemons.find(p => p.name === nameId || p.id == nameId)
     if (cachedPokemon) {
         return cachedPokemon;
     }
 
     try {
-        const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}/${name}`);
+        const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}/${nameId}`);
         pokemons.push(data);
         return data;
     } catch (error) {

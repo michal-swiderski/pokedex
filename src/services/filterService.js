@@ -1,4 +1,4 @@
-import {fetchPokemonByName, fetchPokemonList, fetchPokemonListByType} from "./pokemonService";
+import {fetchPokemonByNameOrId, fetchPokemonList, fetchPokemonListByType} from "./pokemonService";
 import {intersectionBy} from 'lodash';
 
 export async function getFilteredPokemons(name = '', types = [], limit = 20, offset = 0) {
@@ -21,7 +21,7 @@ export async function getFilteredPokemons(name = '', types = [], limit = 20, off
         filtered = filtered.slice(offset, offset + limit);
 
         const filteredResults = [];
-        await Promise.all(filtered.map(({name}) => fetchPokemonByName(name).then(pokemon => filteredResults.push(pokemon))));
+        await Promise.all(filtered.map(({name}) => fetchPokemonByNameOrId(name).then(pokemon => filteredResults.push(pokemon))));
 
         return {
             totalCount: count,
