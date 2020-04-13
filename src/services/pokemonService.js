@@ -26,6 +26,7 @@ export async function fetchPokemonListByType(type) {
 }
 
 export async function fetchPokemonByNameOrId(nameId) {
+    // eslint-disable-next-line
     const cachedPokemon = pokemons.find(p => p.name === nameId || p.id == nameId)
     if (cachedPokemon) {
         return cachedPokemon;
