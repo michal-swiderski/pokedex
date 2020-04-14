@@ -37,6 +37,9 @@ export async function fetchPokemonByNameOrId(nameId) {
         pokemons.push(data);
         return data;
     } catch (error) {
+        if (error.request.status === 404) {
+            return null;
+        }
         throw error;
     }
 }

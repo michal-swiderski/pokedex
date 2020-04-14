@@ -1,0 +1,21 @@
+.not-found-page {
+  max-width: 1024px;
+  margin: auto;
+  text-align: center;
+
+  &__image {
+    height: 300px;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+  }
+
+  &__description {
+    margin-top: -1.5rem;
+    font-size: 2rem;
+  }
+
+  &__link {
+    font-size: 1.2rem;
+  }
+
+}

@@ -5,6 +5,7 @@ import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 import Header from "../Header/Header";
 import PokemonList from "../PokemonList/PokemonList";
 import PokemonDetails from "../PokemonDetails/PokemonDetails";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function App() {
     return (
@@ -20,6 +21,9 @@ function App() {
                     </Route>
                     <Route path="/pokemon/:name">
                         <PokemonDetails/>
+                    </Route>
+                    <Route path="/404">
+                        <NotFoundPage/>
                     </Route>
                 </Switch>
             </div>

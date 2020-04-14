@@ -19,21 +19,26 @@ const PokemonDetails = () => {
     const history = useHistory();
     const {name} = useParams();
 
-    useEffect(() => console.log('rerender'))
-
     useEffect(() => {
-        fetchPokemonByNameOrId(name).then(pokemon => {
-            setPokemon(pokemon);
-            return fetchPokemonSpeciesByName(pokemon.species.name);
-        }).then(species => {
-            setPokemonSpecies(species);
-            const flavor_texts = species.flavor_text_entries.filter(el => el.language.name === 'en').map(el => el.flavor_text);
-            setFlavorText(sample(flavor_texts));
-        }).catch(e => {
-            //TODO proper error handling
-        });
+        (async () => {
+            try {
+                const pokemon = await fetchPokemonByNameOrId(name);
+                if (pokemon === null) {
+                    history.push('/404');
+                    return;
+                }
 
-    }, [name]);
+                setPokemon(pokemon);
+                const species = await fetchPokemonSpeciesByName(pokemon.species.name);
+                setPokemonSpecies(species);
+                const flavor_texts = species.flavor_text_entries.filter(el => el.language.name === 'en').map(el => el.flavor_text);
+                setFlavorText(sample(flavor_texts));
+            } catch (e) {
+                //TODO error handling
+            }
+        })();
+
+    }, [name, history]);
 
     if (pokemon === null || pokemonSpecies === null) {
         return null;
@@ -68,7 +73,7 @@ const PokemonDetails = () => {
             {
                 pokemon.stats.map(stat => {
                     return (
-                        <React.Fragment>
+                        <React.Fragment key={stat.stat.name}>
                             <StatBar stat={stat.base_stat} statName={stat.stat.name}/>
                         </React.Fragment>
                     )
