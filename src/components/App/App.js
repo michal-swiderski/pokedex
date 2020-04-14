@@ -25,6 +25,7 @@ function App() {
                     <Route path="/404">
                         <NotFoundPage/>
                     </Route>
+                    <NotFoundPage/>
                 </Switch>
             </div>
         </BrowserRouter>
