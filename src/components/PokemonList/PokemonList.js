@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonList.scss';
-import {useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {debounce} from 'lodash';
 import {getFilteredPokemons} from "../../services/filterService";
 import Media from "react-media";
@@ -11,6 +11,7 @@ import PokemonListEntry from "../PokemonListEntry/PokemonListEntry";
 const PokemonList = () => {
 
     const {page} = useParams();
+    const history = useHistory();
 
     const [pokemons, setPokemons] = useState([]);
     const [totalCount, setTotalCount] = useState([]);
@@ -19,16 +20,14 @@ const PokemonList = () => {
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
-        try {
-            getFilteredPokemons(nameFilter, types, 20, (page - 1) * 20).then(({totalCount, results}) => {
-                setPokemons(results);
-                setTotalCount(totalCount);
-            });
-        } catch (e) {
-            //TODO proper error handling
+        getFilteredPokemons(nameFilter, types, 20, (page - 1) * 20).then(({totalCount, results}) => {
+            setPokemons(results);
+            setTotalCount(totalCount);
+        }).catch(e => {
             console.error(e);
-        }
-    }, [page, nameFilter, types]);
+            history.push('/error');
+        });
+    }, [page, nameFilter, types, history]);
 
     const list = pokemons.map(p =>
         <div className="pokemon-list__pokemon-wrapper" key={p.id}>

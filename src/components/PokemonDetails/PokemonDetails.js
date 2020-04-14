@@ -31,16 +31,19 @@ const PokemonDetails = () => {
                 setPokemon(pokemon);
                 const species = await fetchPokemonSpeciesByName(pokemon.species.name);
                 setPokemonSpecies(species);
+                //select a random english description text
                 const flavor_texts = species.flavor_text_entries.filter(el => el.language.name === 'en').map(el => el.flavor_text);
                 setFlavorText(sample(flavor_texts));
             } catch (e) {
-                //TODO error handling
+                console.error(e);
+                history.push('/error');
             }
         })();
 
     }, [name, history]);
 
     if (pokemon === null || pokemonSpecies === null) {
+        //TODO display a spinner
         return null;
     }
 
