@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useHistory, useParams} from 'react-router-dom';
 import './PokemonDetails.scss';
 import {fetchPokemonByNameOrId, fetchPokemonSpeciesByName} from "../../services/pokemonService";
 import PokemonType from "../PokemonType/PokemonType";
@@ -44,20 +44,28 @@ const PokemonDetails = () => {
         return null;
     }
 
+    const backButton = (
+        <button className="pokemon-details__nav-button pokemon-details__nav-button--back"
+                onClick={() => history.push('/pokemon/' + (pokemon.id - 1))}>
+            <img src={arrow_back} alt="arrow left"/>
+            <span>#{(pokemon.id - 1).toString().padStart(3, '0')}</span>
+        </button>
+    )
+
+    const forwardButton = (
+        <button className="pokemon-details__nav-button pokemon-details__nav-button--forward"
+                onClick={() => history.push('/pokemon/' + (pokemon.id + 1))}>
+            <span>#{(pokemon.id + 1).toString().padStart(3, '0')}</span>
+            <img src={arrow_forward} alt="arrow right"/>
+        </button>
+    )
+
     return (
         <div className="pokemon-details">
             <div className="pokemon-details__image-wrapper">
-                <button className="pokemon-details__nav-button pokemon-details__nav-button--back"
-                        onClick={() => history.push('/pokemon/' + (pokemon.id - 1))}>
-                    <img src={arrow_back} alt="arrow left"/>
-                    <span>#{(pokemon.id - 1).toString().padStart(3, '0')}</span>
-                </button>
 
-                <button className="pokemon-details__nav-button pokemon-details__nav-button--forward"
-                        onClick={() => history.push('/pokemon/' + (pokemon.id + 1))}>
-                    <span>#{(pokemon.id + 1).toString().padStart(3, '0')}</span>
-                    <img src={arrow_forward} alt="arrow right"/>
-                </button>
+                {pokemon.id > 1 ? backButton : null}
+                {forwardButton}
 
                 <img className="pokemon-details__image" src={pokemon.sprites.front_default} alt={pokemon.name}/>
             </div>
@@ -71,13 +79,9 @@ const PokemonDetails = () => {
             {pokemon.types.map(({type}) => <PokemonType key={type.name} type={type.name} fullWidth/>)}
             <h2>Stats</h2>
             {
-                pokemon.stats.map(stat => {
-                    return (
-                        <React.Fragment key={stat.stat.name}>
-                            <StatBar stat={stat.base_stat} statName={stat.stat.name}/>
-                        </React.Fragment>
-                    )
-                })
+                pokemon.stats.map(stat =>
+                    <StatBar stat={stat.base_stat} statName={stat.stat.name} key={stat.stat.name}/>
+                )
             }
 
         </div>
