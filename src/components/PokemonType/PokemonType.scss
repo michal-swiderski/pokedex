@@ -10,6 +10,10 @@
   border-radius: 20px;
   text-align: center;
 
+  &--full-width {
+    width: 100%;
+  }
+
   @each $type, $color in $type-colors {
     &--#{$type} {
       color: $color;
