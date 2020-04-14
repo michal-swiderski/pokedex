@@ -63,7 +63,7 @@ const PokemonDetails = () => {
             </div>
             <p className="pokemon-details__description">"{flavorText}"</p>
             <h2>Types</h2>
-            {pokemon.types.map(({type}) => <PokemonType key={type.name} type={type.name}/>)}
+            {pokemon.types.map(({type}) => <PokemonType key={type.name} type={type.name} fullWidth/>)}
             <h2>Stats</h2>
             {
                 pokemon.stats.map(stat => {
