@@ -20,13 +20,15 @@ const PokemonList = () => {
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
-        getFilteredPokemons(nameFilter, types, 20, (page - 1) * 20).then(({totalCount, results}) => {
-            setPokemons(results);
-            setTotalCount(totalCount);
-        }).catch(e => {
-            console.error(e);
-            history.push('/error');
-        });
+        getFilteredPokemons(nameFilter, types, 20, (page - 1) * 20)
+            .then(({totalCount, results}) => {
+                setPokemons(results);
+                setTotalCount(totalCount);
+            })
+            .catch(e => {
+                console.error(e);
+                history.push('/error');
+            });
     }, [page, nameFilter, types, history]);
 
     const list = pokemons.map(p =>
@@ -43,8 +45,18 @@ const PokemonList = () => {
         <>
             <PokemonListToolbar
                 pageCount={Math.ceil(totalCount / 20)}
-                onName={debounce((name) => setNameFilter(name), 300)}
-                onFilter={(types) => setTypes(types)}
+                onName={
+                    debounce(name => {
+                        setNameFilter(name);
+                        history.push('/page/1')
+                    }, 300)
+                }
+                onFilter={
+                    debounce(types => {
+                        setTypes(types);
+                        history.push('/page/1')
+                    }, 300)
+                }
             />
             <div className="pokemon-list">
 
