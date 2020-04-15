@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {range} from 'lodash';
-import clsx from 'clsx';
 
 import './Pagination.scss';
+import chevronLeft from '../../assets/icons/chevron_left.svg';
+import chevronRight from '../../assets/icons/chevron_right.svg';
+import firstPage from '../../assets/icons/first_page.svg';
+import lastPage from '../../assets/icons/last_page.svg';
 
 const Pagination = props => {
 
@@ -16,33 +18,43 @@ const Pagination = props => {
         setCurrentPage(props.page || 1);
     }, [props.page]);
 
-    let start = currentPage > 2 ? (currentPage >= props.count - 1 ? currentPage - 2 : currentPage - 1) : 2;
-    let end = currentPage > 2 ? (currentPage >= props.count - 1 ? props.count : currentPage + 2) : 4;
 
     return (
-        <ul className="pagination">
-            <li
-                className={clsx('pagination__item', {'pagination__item--active': currentPage === 1})}
-                onClick={() => history.push('/page/1')}
-            >
-                1
-            </li>
+        <div className="pagination">
             {
-                range(start, end).map(p =>
-                    <li
-                        className={clsx('pagination__item', {'pagination__item--active': currentPage === p})}
-                        onClick={() => history.push('/page/' + p)}
+                currentPage !== 1 ?
+                    <button className="pagination__button"
+                            onClick={() => history.push('/page/1')}
                     >
-                        {p}
-                    </li>)
+                        <img src={firstPage} alt="first page"/>
+                    </button> : null
             }
-            <li
-                className={clsx('pagination__item', {'pagination__item--active': currentPage === props.count})}
-                onClick={() => history.push('/page/' + props.count)}
+
+            <button className="pagination__button"
+                    onClick={() => history.push('/page/' + (currentPage - 1))}
             >
-                {props.count}
-            </li>
-        </ul>
+                <img src={chevronLeft} alt="previous page"/>
+            </button>
+
+            <span
+                className="pagination__page-count">{currentPage.toString().padStart(2, '0')} / {props.count.toString().padStart(2, '0')}</span>
+
+            <button className="pagination__button"
+                    onClick={() => history.push('/page/' + (currentPage + 1))}
+            >
+                <img src={chevronRight} alt="next page"/>
+            </button>
+
+            {
+                currentPage !== props.count ?
+                    <button className="pagination__button"
+                            onClick={() => history.push('/page/' + props.count)}
+                    >
+                        <img src={lastPage} alt="last page"/>
+                    </button> : null
+            }
+
+        </div>
     );
 };
 
