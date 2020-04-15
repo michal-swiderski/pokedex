@@ -23,35 +23,39 @@ const Pagination = props => {
         <div className="pagination">
             {
                 currentPage !== 1 ?
-                    <button className="pagination__button"
-                            onClick={() => history.push('/page/1')}
-                    >
-                        <img src={firstPage} alt="first page"/>
-                    </button> : null
-            }
+                    <React.Fragment>
+                        <button className="pagination__button"
+                                onClick={() => history.push('/page/1')}
+                        >
+                            <img src={firstPage} alt="first page"/>
+                        </button>
 
-            <button className="pagination__button"
-                    onClick={() => history.push('/page/' + (currentPage - 1))}
-            >
-                <img src={chevronLeft} alt="previous page"/>
-            </button>
+                        <button className="pagination__button"
+                                onClick={() => history.push('/page/' + (currentPage - 1))}
+                        >
+                            <img src={chevronLeft} alt="previous page"/>
+                        </button>
+                    </React.Fragment> : null
+            }
 
             <span
                 className="pagination__page-count">{currentPage.toString().padStart(2, '0')} / {props.count.toString().padStart(2, '0')}</span>
 
-            <button className="pagination__button"
-                    onClick={() => history.push('/page/' + (currentPage + 1))}
-            >
-                <img src={chevronRight} alt="next page"/>
-            </button>
-
             {
                 currentPage !== props.count ?
-                    <button className="pagination__button"
-                            onClick={() => history.push('/page/' + props.count)}
-                    >
-                        <img src={lastPage} alt="last page"/>
-                    </button> : null
+                    <React.Fragment>
+                        <button className="pagination__button"
+                                onClick={() => history.push('/page/' + (currentPage + 1))}
+                        >
+                            <img src={chevronRight} alt="next page"/>
+                        </button>
+
+                        <button className="pagination__button"
+                                onClick={() => history.push('/page/' + props.count)}
+                        >
+                            <img src={lastPage} alt="last page"/>
+                        </button>
+                    </React.Fragment> : null
             }
 
         </div>

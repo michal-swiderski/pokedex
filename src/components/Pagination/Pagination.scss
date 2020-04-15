@@ -17,6 +17,12 @@
     &:hover {
       transform: scale(1.2);
     }
+
+    &--disabled {
+      &:hover {
+        transform: none;
+      }
+    }
   }
 
   &__page-count {
