@@ -6,8 +6,8 @@ import PokemonType from "../PokemonType/PokemonType";
 import StatBar from "../StatBar/StatBar";
 import {sample} from 'lodash';
 
-import arrow_back from '../../assets/icons/arrow_back.svg';
-import arrow_forward from '../../assets/icons/arrow_forward.svg';
+import chevron_left from '../../assets/icons/chevron_left.svg';
+import chevron_right from '../../assets/icons/chevron_right.svg';
 
 
 const PokemonDetails = () => {
@@ -50,7 +50,7 @@ const PokemonDetails = () => {
     const backButton = (
         <button className="pokemon-details__nav-button pokemon-details__nav-button--back"
                 onClick={() => history.push('/pokemon/' + (pokemon.id - 1))}>
-            <img src={arrow_back} alt="arrow left"/>
+            <img src={chevron_left} alt="arrow left"/>
             <span>#{(pokemon.id - 1).toString().padStart(3, '0')}</span>
         </button>
     )
@@ -59,7 +59,7 @@ const PokemonDetails = () => {
         <button className="pokemon-details__nav-button pokemon-details__nav-button--forward"
                 onClick={() => history.push('/pokemon/' + (pokemon.id + 1))}>
             <span>#{(pokemon.id + 1).toString().padStart(3, '0')}</span>
-            <img src={arrow_forward} alt="arrow right"/>
+            <img src={chevron_right} alt="arrow right"/>
         </button>
     )
 
