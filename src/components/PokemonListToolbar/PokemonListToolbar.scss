@@ -1,5 +1,7 @@
 @import '../../common/colours.scss';
 
+$dot-size: 7px;
+
 .toolbar {
   display: flex;
   flex-wrap: wrap-reverse;
@@ -19,11 +21,12 @@
       &::after {
         content: "";
         display: inline-block;
-        width: 5px;
-        height: 5px;
+        width: $dot-size;
+        height: $dot-size;
         background: $pokemon-primary;
         border-radius: 50%;
-        transform: translate(4px, -50%);
+        vertical-align: middle;
+        transform: translateX(4px);
       }
     }
 
