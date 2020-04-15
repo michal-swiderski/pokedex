@@ -5,7 +5,7 @@
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, .12);
   background: white;
   border-radius: 10px;
-  padding: 0.3rem 1rem;
+  padding: 0.2rem 1rem;
   cursor: pointer;
 
   &:hover {
@@ -15,12 +15,19 @@
   &__name {
     display: inline-block;
     text-transform: capitalize;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: normal;
     padding-left: 0.3rem;
+    margin: 0 0 0.8rem 0;
   }
 
   &__id {
     color: gray;
+    font-size: 1rem;
+  }
+
+  &__image {
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
   }
 }

@@ -20,7 +20,8 @@ const PokemonListEntry = props => {
                 }
             </div>
             <div className="pokemon-list-entry__image-wrapper">
-                <img src={props.pokemon.sprites.front_default} alt={props.pokemon.name}/>
+                <img className="pokemon-list-entry__image" src={props.pokemon.sprites.front_default}
+                     alt={props.pokemon.name}/>
             </div>
         </div>
     );
