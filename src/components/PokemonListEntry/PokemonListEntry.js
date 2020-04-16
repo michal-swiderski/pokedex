@@ -3,10 +3,13 @@ import {useHistory} from 'react-router-dom';
 import './PokemonListEntry.scss';
 import PropTypes from 'prop-types';
 import PokemonType from "../PokemonType/PokemonType";
+import questionMark from "../../assets/question_mark.png";
 
 const PokemonListEntry = props => {
 
     const history = useHistory();
+
+    const sprite = props.pokemon.sprites.front_default || questionMark;
 
     return (
         <div className="pokemon-list-entry" onClick={() => history.push('/pokemon/' + props.pokemon.name)}>
@@ -20,7 +23,7 @@ const PokemonListEntry = props => {
                 }
             </div>
             <div className="pokemon-list-entry__image-wrapper">
-                <img className="pokemon-list-entry__image" src={props.pokemon.sprites.front_default}
+                <img className="pokemon-list-entry__image" src={sprite}
                      alt={props.pokemon.name}/>
             </div>
         </div>

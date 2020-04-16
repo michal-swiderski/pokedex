@@ -8,6 +8,7 @@ import {sample} from 'lodash';
 
 import chevron_left from '../../assets/icons/chevron_left.svg';
 import chevron_right from '../../assets/icons/chevron_right.svg';
+import questionMark from "../../assets/question_mark.png";
 
 
 const PokemonDetails = () => {
@@ -62,6 +63,8 @@ const PokemonDetails = () => {
         </button>
     )
 
+    const sprite = pokemon.sprites.front_default || questionMark;
+
     return (
         <div className="pokemon-details">
             <div className="pokemon-details__image-wrapper">
@@ -69,7 +72,7 @@ const PokemonDetails = () => {
                 {pokemon.id > 1 ? backButton : null}
                 {forwardButton}
 
-                <img className="pokemon-details__image" src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                <img className="pokemon-details__image" src={sprite} alt={pokemon.name}/>
             </div>
             <h1 className="pokemon-details__name">{pokemon.name}</h1>
             <div className="pokemon-details__size-wrapper">
