@@ -71,6 +71,7 @@
 }
 
 .dialog-overlay {
+  z-index: 9999;
   display: block;
   content: "";
   position: fixed;

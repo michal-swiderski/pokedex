@@ -1,8 +1,19 @@
 @import '../../common/breakpoints';
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
+  animation: fade-in 1s;
 
   &__pokemon-wrapper {
     box-sizing: border-box;
