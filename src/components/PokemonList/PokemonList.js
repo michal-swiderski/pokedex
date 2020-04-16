@@ -7,6 +7,7 @@ import Media from "react-media";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import PokemonListToolbar from "../PokemonListToolbar/PokemonListToolbar";
 import PokemonListEntry from "../PokemonListEntry/PokemonListEntry";
+import Loader from "../Loader/Loader";
 
 const PokemonList = () => {
 
@@ -19,11 +20,15 @@ const PokemonList = () => {
     const [nameFilter, setNameFilter] = useState('');
     const [types, setTypes] = useState([]);
 
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
+        setIsLoading(true);
         getFilteredPokemons(nameFilter, types, 20, (page - 1) * 20)
             .then(({totalCount, results}) => {
                 setPokemons(results);
                 setTotalCount(totalCount);
+                setIsLoading(false);
             })
             .catch(e => {
                 console.error(e);
@@ -31,7 +36,8 @@ const PokemonList = () => {
             });
     }, [page, nameFilter, types, history]);
 
-    const list = pokemons.map(p =>
+
+    const cardList = pokemons.map(p =>
         <div className="pokemon-list__pokemon-wrapper" key={p.id}>
             <PokemonCard pokemon={p}/>
         </div>);
@@ -40,6 +46,18 @@ const PokemonList = () => {
         <div className="pokemon-list__pokemon-wrapper" key={p.id}>
             <PokemonListEntry pokemon={p}/>
         </div>);
+
+    const pokemonList = (
+        <div className="pokemon-list">
+            {pokemons.length === 0 ? <h1>No pokemon matched your search :(</h1> : null}
+            <Media queries={{
+                sm: "(min-width: 0) and (max-width: 420px)"
+            }}>
+                {
+                    matches => matches.sm ? mobileList : cardList
+                }
+            </Media>
+        </div>)
 
     return (
         <>
@@ -58,20 +76,9 @@ const PokemonList = () => {
                     }, 300)
                 }
             />
-            <div className="pokemon-list">
 
-                <Media queries={{
-                    sm: "(min-width: 0) and (max-width: 420px)"
-                }}>
-                    {
-                        matches => (
-                            <React.Fragment>
-                                {matches.sm ? mobileList : list}
-                            </React.Fragment>
-                        )
-                    }
-                </Media>
-            </div>
+            {isLoading ? <Loader/> : pokemonList}
+
         </>
     );
 };
