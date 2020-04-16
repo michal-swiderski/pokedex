@@ -18,7 +18,10 @@ const PokemonListToolbar = props => {
 
     return (
         <div className="toolbar">
-            <Pagination count={props.pageCount} page={Number.parseInt(page)}/>
+            {
+                props.showPagination ? <Pagination count={props.pageCount} page={Number.parseInt(page)}/> : null
+            }
+
             <Spacer/>
             <PokemonSearch onChange={name => props.onName(name)}/>
             <button
@@ -40,6 +43,7 @@ const PokemonListToolbar = props => {
 
 PokemonListToolbar.propTypes = {
     pageCount: PropTypes.number.isRequired,
+    showPagination: PropTypes.bool,
     page: PropTypes.number,
     onName: PropTypes.func,
     onFilter: PropTypes.func

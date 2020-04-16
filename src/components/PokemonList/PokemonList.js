@@ -61,6 +61,7 @@ const PokemonList = () => {
     return (
         <>
             <PokemonListToolbar
+                showPagination={pokemons.length !== 0}
                 pageCount={Math.ceil(totalCount / 20)}
                 onName={
                     debounce(name => {
