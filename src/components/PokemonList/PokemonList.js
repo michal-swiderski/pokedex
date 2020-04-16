@@ -61,7 +61,7 @@ const PokemonList = () => {
             <div className="pokemon-list">
 
                 <Media queries={{
-                    sm: "(min-width: 0) and (max-width: 480px)"
+                    sm: "(min-width: 0) and (max-width: 420px)"
                 }}>
                     {
                         matches => (

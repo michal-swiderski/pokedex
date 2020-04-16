@@ -1,8 +1,11 @@
 @import '../../common/colours.scss';
+@import '../../common/breakpoints.scss';
 
 .pokemon-search {
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  @include at-sm-down {
+    width: 100%;
+    margin-right: 0;
+  }
   border: 1px solid lightgray;
   border-radius: 20px;
   height: 40px;

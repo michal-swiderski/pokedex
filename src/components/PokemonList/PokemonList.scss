@@ -6,23 +6,23 @@
 
   &__pokemon-wrapper {
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 0.5rem;
     width: 25%;
 
-    @media screen and (max-width: $breakpoint-xs) {
+    @include at-sm-down {
       width: 100%;
       padding: 0.5rem 0;
     }
 
-    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-sm) {
+    @include at-sm-up {
       width: 50%;
     }
 
-    @media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+    @include at-md-up {
       width: 33.33%;
     }
 
-    @media screen and (min-width: $breakpoint-md) {
+    @include at-lg-up {
       width: 25%;
     }
 

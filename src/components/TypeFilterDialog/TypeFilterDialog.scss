@@ -24,11 +24,11 @@
   border-radius: 10px;
   animation: dialog-zoom-in 0.2s;
 
-  @media screen and (max-width: $breakpoint-xs) {
+  @include at-sm-down {
     width: 90%;
   }
 
-  @media screen and (min-width: $breakpoint-xs) {
+  @include at-sm-up {
     width: 50%;
   }
 
