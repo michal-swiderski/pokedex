@@ -33,7 +33,7 @@ const PokemonDetails = () => {
                 setPokemonSpecies(species);
                 //select a random english description text
                 const flavor_texts = species.flavor_text_entries.filter(el => el.language.name === 'en').map(el => el.flavor_text);
-                setFlavorText(sample(flavor_texts));
+                setFlavorText(sample(flavor_texts).replace('\f', ' '));
             } catch (e) {
                 console.error(e);
                 history.push('/error');
