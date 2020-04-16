@@ -41,6 +41,8 @@ const TypeFilterDialog = props => {
         } else {
             props.onFilter(activeTypes);
         }
+        //skip onFilter in deps list because it never changes anyway and including it causes an infinite loop
+        //eslint-disable-next-line
     }, [activeTypes]);
 
     const dialog = (
