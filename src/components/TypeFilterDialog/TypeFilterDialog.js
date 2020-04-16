@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import './TypeFilterDialog.scss';
 
@@ -13,8 +13,8 @@ const types = ['normal', 'fighting', 'flying',
     'dragon', 'dark', 'fairy'];
 
 const TypeFilterDialog = props => {
-
     const [activeTypes, setActiveFilters] = useState([]);
+    const isFirstRun = useRef(true);
 
     const handleTypeClick = (type) => {
         if (activeTypes.includes(type)) {
@@ -33,7 +33,14 @@ const TypeFilterDialog = props => {
     }, [props.open]);
 
     useEffect(() => {
-        props.onFilter(activeTypes);
+
+        //prevent the filter action from running the first time the component renders which would cause a redirect to the first page every time someone visits another page directly.
+
+        if (isFirstRun.current) {
+            isFirstRun.current = false;
+        } else {
+            props.onFilter(activeTypes);
+        }
     }, [activeTypes]);
 
     const dialog = (
