@@ -1,9 +1,9 @@
 # React Pokedex
 This repository contains my Allegro front-end internship task, which is a pokedex utilising PokeAPI.
 
-The pokedex was built utilising React.
+The pokedex was built using React.
 
-A preview is available at: https://allegro-pokedex.herokuapp.com/
+The app is available at: https://allegro-pokedex.herokuapp.com/
 
 ## Install and start
 ```
