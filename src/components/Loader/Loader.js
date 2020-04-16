@@ -1,12 +1,12 @@
 import React from 'react';
 import './Loader.scss';
 
-import joelton from '../../assets/joelton.gif';
+import jolteon from '../../assets/jolteon.gif';
 
 const Loader = props => {
     return (
         <div className="loader">
-            <img className="loader__image" src={joelton} alt="running joelton"/>
+            <img className="loader__image" src={jolteon} alt="running joelton"/>
             <p className="loader__text">Loading...</p>
         </div>
     );
