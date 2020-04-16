@@ -5,8 +5,6 @@ const POKEMON_ENDPOINT = '/pokemon';
 const POKEMON_SPECIES_ENDPOINT = '/pokemon-species';
 
 
-const pokemons = [];
-
 export async function fetchPokemonList() {
     try {
         const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}?limit=-1`);
@@ -26,15 +24,8 @@ export async function fetchPokemonListByType(type) {
 }
 
 export async function fetchPokemonByNameOrId(nameId) {
-    // eslint-disable-next-line
-    const cachedPokemon = pokemons.find(p => p.name === nameId || p.id == nameId)
-    if (cachedPokemon) {
-        return cachedPokemon;
-    }
-
     try {
         const {data} = await axios.get(`${POKEAPI_URL}${POKEMON_ENDPOINT}/${nameId}`);
-        pokemons.push(data);
         return data;
     } catch (error) {
         if (error.request.status === 404) {
