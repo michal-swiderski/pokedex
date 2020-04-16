@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import './PokemonDetails.scss';
-import {fetchPokemonByNameOrId, fetchPokemonSpeciesByName, fetchPokemonList} from "../../services/pokemonService";
+import {fetchPokemonByNameOrId, fetchPokemonSpeciesByName} from "../../services/pokemonService";
 import PokemonType from "../PokemonType/PokemonType";
 import StatBar from "../StatBar/StatBar";
 import {sample} from 'lodash';
@@ -43,7 +43,6 @@ const PokemonDetails = () => {
     }, [name, history]);
 
     if (pokemon === null || pokemonSpecies === null) {
-        //TODO display a spinner
         return null;
     }
 
