@@ -49,7 +49,6 @@ const PokemonList = () => {
 
     const pokemonList = (
         <div className="pokemon-list">
-            {pokemons.length === 0 ? <h1>No pokemon matched your search :(</h1> : null}
             <Media queries={{
                 sm: "(min-width: 0) and (max-width: 420px)"
             }}>
@@ -76,7 +75,8 @@ const PokemonList = () => {
                     }, 300)
                 }
             />
-
+            {!isLoading && pokemons.length === 0 ?
+                <h2 className="search-failure">No pokemon matched your search :(</h2> : null}
             {isLoading ? <Loader/> : pokemonList}
 
         </>
